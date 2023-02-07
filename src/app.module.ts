@@ -6,15 +6,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGODB),
     CatsModule,
-    MongooseModule.forRoot(process.env.MONGODB_URI, {
-      useNewUriParser: true,
-      useUnifiedTopology: true,
-    }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
