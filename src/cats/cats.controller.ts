@@ -21,38 +21,28 @@ import { CatsService } from './cats.service';
 export class CatsController {
   constructor(private catsService: CatsService) {}
 
-  @Get('/test')
-  getAllCat() {
-    // throw new HttpException('엘ㄹ러', 403); 직접 에러코드 넣어 익셉션.
-    return 'all cat';
-  }
-
-  @Get(':id')
-  getOneCat(@Param('id', ParseIntPipe, PositiveIntPipe) param: number) {
-    //getOneCat(@Param() param) 이렇게 사용하면 key : value 형식.
-    //getOneCat(@Param('id') param) 이렇게 사용하면 value 만.
-    console.log(param);
-    console.log(typeof param);
-    return 'one cat';
+  @Get()
+  getCurrentCat() {
+    return 'current cat';
   }
 
   @Post()
-  createCat() {
-    return 'create cat';
+  async signUp() {
+    return 'signup';
   }
 
-  @Put(':id')
-  updateCat() {
-    return 'update cat';
+  @Post('login')
+  logIn() {
+    return 'login';
   }
 
-  @Patch(':id')
-  updatePartialCat() {
-    return 'updeate';
+  @Post('logout')
+  logOut() {
+    return 'logout';
   }
 
-  @Delete(':id')
-  deleteCat() {
-    return 'delete';
+  @Post('upload/cats')
+  uploadCatImg() {
+    return 'uploadImg';
   }
 }
